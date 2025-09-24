@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { Card, Icon } from '@rneui/base';
 import { Button } from '@rneui/themed';
 import React from 'react';
@@ -13,6 +14,8 @@ const arr = [
 ]
 
 const Home = () => {
+
+    const navigation = useNavigation()
 
     const renderItems = () => {
         return arr.map((item, index) => {
@@ -31,15 +34,24 @@ const Home = () => {
     }
     return (
         <View style={styles.container}>
-            <ViewContainer style={{ flex: 1, paddingHorizontal: 25, backgroundColor: Colors.light.backgroundLight, }}>
-                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+
+            <ViewContainer style={{ flex: 1, backgroundColor: Colors.light.backgroundLight, }}>
+                <View style={styles.headerContainer}>
+                    {/* <View>
+                        <Image source={require('../assets/images/logo.png')} style={{ width: 90, height: 30 }} resizeMode={'contain'} />
+                    </View> */}
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', color: Colors.light.text}}>Dashboard</Text>
+                    </View>
+                </View>
+                <ScrollView contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 25, }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Card containerStyle={{ borderRadius: 12, margin: 0 }}>
-                            <Text style={{ fontSize: 16 }}>Total Training</Text>
+                            <Text style={{ fontSize: 16, marginBottom: 5 }}>Total Training</Text>
                             <Text style={{ fontSize: 24, fontWeight: 'bold' }}>12</Text>
                         </Card>
-                        <Card containerStyle={{ borderRadius: 12, margin: 0 }}>
-                            <Text style={{ fontSize: 16 }}>Expiring/Expired Training</Text>
+                        <Card containerStyle={{ borderRadius: 12, margin: 0, padding: 20 }}>
+                            <Text style={{ fontSize: 16, marginBottom: 5  }}>Expiring/Expired Training</Text>
                             <Text style={{ fontSize: 24, fontWeight: 'bold' }}>3</Text>
 
                         </Card>
@@ -53,7 +65,7 @@ const Home = () => {
                         <View style={{ marginTop: 20 }}>
                             <Button title="View All Records" buttonStyle={{
                                 borderRadius: 30, backgroundColor: Colors.light.primary, paddingVertical: 16
-                            }} onPress={() => { }} />
+                            }} onPress={() => { navigation.navigate('Tabs', { screen: 'AllRecords' }) }} />
                         </View>
                     </View>
                 </ScrollView>
@@ -65,7 +77,7 @@ const Home = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.light.backgroundLight,
+        backgroundColor: Colors.light.background,
     },
     rowContainer: {
         paddingHorizontal: 20, paddingVertical: 16, borderRadius: 12, backgroundColor: Colors.light.background,
@@ -74,6 +86,10 @@ const styles = StyleSheet.create({
     iconContainer: {
         width: 40, height: 40, borderRadius: 40, backgroundColor: Colors.light.secondaryBackground,
         justifyContent: 'center', alignItems: 'center', marginRight: 10
+    },
+    headerContainer: {
+        backgroundColor: Colors.light.background,
+        paddingHorizontal: 25, paddingBottom: 20, paddingTop: 10, marginBottom: 20, flexDirection: 'row'
     }
 });
 
