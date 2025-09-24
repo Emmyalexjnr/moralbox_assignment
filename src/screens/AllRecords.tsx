@@ -34,6 +34,10 @@ const allRecords: RecordRowItem[] = [
         name: 'Financial Training', icon: 'cash-usd', status: 'expired',
         value: 'https://www.princexml.com/samples/magic6/magic.pdf', expiryDate: '2024-07-01'
     },
+    {
+        name: 'Fire Safety Training', icon: 'fire', status: 'upcoming',
+        value: 'https://www.princexml.com/samples/magic6/magic.pdf', expiryDate: '2024-07-01'
+    }
 ]
 
 const AllRecords = () => {

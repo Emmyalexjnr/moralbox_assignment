@@ -1,8 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
-import { Card, Icon } from '@rneui/base';
-import { Button } from '@rneui/themed';
+import { Button, Card, Icon } from '@rneui/themed';
 import React from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ViewContainer } from '../components/ViewContainer';
 import { Colors } from '../constants/Colors';
 import { RecordRowItem } from '../router/types';
@@ -26,9 +25,14 @@ const arr: RecordRowItem[] = [
     },
 ]
 
+const SCREEN_WIDTH = Dimensions.get('window').width
+
+const itemWidth = (SCREEN_WIDTH - 60)/ 2
+
 const Home = () => {
 
     const navigation = useNavigation()
+
 
     const renderItems = () => {
         return arr.map((item, index) => {
@@ -50,29 +54,40 @@ const Home = () => {
 
             <ViewContainer style={{ flex: 1, backgroundColor: Colors.light.backgroundLight, }}>
                 <View style={styles.headerContainer}>
-                    {/* <View>
-                        <Image source={require('../assets/images/logo.png')} style={{ width: 90, height: 30 }} resizeMode={'contain'} />
-                    </View> */}
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 20, fontWeight: 'bold', color: Colors.light.text }}>Dashboard</Text>
+                    <View>
+                        <Image source={require('../assets/images/logo.png')} style={{ width: 140, height: 40 }} resizeMode={'contain'} />
                     </View>
+                    {/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', color: Colors.light.text }}>Dashboard</Text>
+                    </View> */}
                 </View>
                 <ScrollView contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 25, }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Card containerStyle={{ borderRadius: 12, margin: 0 }}>
+                    <View style={{ flexDirection: 'row', gap: 10, flexWrap: 'wrap', width: '100%' }}>
+                        <Card containerStyle={{ borderRadius: 12, margin: 0, padding: 20, width: itemWidth}}>
                             <Text style={{ fontSize: 16, marginBottom: 5 }}>Total Training</Text>
                             <Text style={{ fontSize: 24, fontWeight: 'bold' }}>12</Text>
                         </Card>
-
-                        <Card containerStyle={{ borderRadius: 12, margin: 0, padding: 20 }}>
-                            <Text style={{ fontSize: 16, marginBottom: 5 }}>Expiring/Expired Training</Text>
-                            <Text style={{ fontSize: 24, fontWeight: 'bold' }}>3</Text>
+                        <Card containerStyle={{ borderRadius: 12, margin: 0, padding: 20, width: itemWidth }} >
+                            <Text style={{ fontSize: 16, marginBottom: 5 }}>Upcoming Training</Text>
+                            <Text style={{ fontSize: 24, fontWeight: 'bold' }}>2</Text>
 
                         </Card>
 
+                        <Card containerStyle={{ borderRadius: 12, margin: 0, padding: 20, width: itemWidth }} >
+                            <Text style={{ fontSize: 16, marginBottom: 5 }}>Expired Training</Text>
+                            <Text style={{ fontSize: 24, fontWeight: 'bold' }}>3</Text>
+
+                        </Card>
+                        <Card containerStyle={{ borderRadius: 12, margin: 0, padding: 20, width: itemWidth }} >
+                            <Text style={{ fontSize: 16, marginBottom: 5 }}>Expiring Training</Text>
+                            <Text style={{ fontSize: 24, fontWeight: 'bold' }}>5</Text>
+
+                        </Card>
+                        
+
                     </View>
                     <View>
-                        <Text style={{ fontSize: 16, marginTop: 20, marginBottom: 20, fontWeight: 'bold' }}>Recent Training</Text>
+                        <Text style={{ fontSize: 16, marginTop: 20, marginBottom: 20, fontWeight: 'bold', color: Colors.light.text }}>Recent Training</Text>
                         <View>
                             {renderItems()}
                         </View>
@@ -103,7 +118,8 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         backgroundColor: Colors.light.background,
-        paddingHorizontal: 25, paddingBottom: 20, paddingTop: 10, marginBottom: 20, flexDirection: 'row'
+        paddingHorizontal: 25, paddingBottom: 20, paddingTop: 10, marginBottom: 20, flexDirection: 'row',
+        justifyContent: 'center', alignItems: 'center'
     }
 });
 
