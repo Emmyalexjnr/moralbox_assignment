@@ -16,7 +16,7 @@ const Splash = () => {
     const navigateToHome = () => {
         setTimeout(() => {
             navigation.navigate('Tabs', { screen: 'Home' })
-        }, 5000)
+        }, 2000)
     }
     return (
         <View style={styles.container}>

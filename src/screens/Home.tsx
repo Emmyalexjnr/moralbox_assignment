@@ -91,7 +91,7 @@ const Home = () => {
                         <View>
                             {renderItems()}
                         </View>
-                        <View style={{ marginTop: 20 }}>
+                        <View style={{ marginTop: 20, paddingBottom: 30 }}>
                             <Button title="View All Records" buttonStyle={{
                                 borderRadius: 30, backgroundColor: Colors.light.primary, paddingVertical: 16
                             }} onPress={() => { navigation.navigate('Tabs', { screen: 'AllRecords' }) }} />
