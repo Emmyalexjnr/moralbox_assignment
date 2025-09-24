@@ -2,15 +2,28 @@ import { useNavigation } from '@react-navigation/native';
 import { Card, Icon } from '@rneui/base';
 import { Button } from '@rneui/themed';
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ViewContainer } from '../components/ViewContainer';
 import { Colors } from '../constants/Colors';
+import { RecordRowItem } from '../router/types';
 
-const arr = [
-    { name: 'Safety Training', icon: 'seatbelt', expiryDate: '2023-01-01' },
-    { name: 'Security Training', icon: 'shield-lock', expiryDate: '2025-07-01' },
-    { name: 'Compliance Training', icon: 'file-document-outline', expiryDate: '2028-07-01' },
-    { name: 'Health Training', icon: 'heart-pulse', expiryDate: '2030-07-01' },
+const arr: RecordRowItem[] = [
+    {
+        name: 'Safety Training', icon: 'seatbelt', expiryDate: '2023-01-01',
+        status: 'upcoming', value: 'https://www.princexml.com/samples/usenix/example.pdf'
+    },
+    {
+        name: 'Security Training', icon: 'shield-lock', expiryDate: '2025-07-01',
+        status: 'active', value: 'https://www.princexml.com/samples/usenix/example.pdf'
+    },
+    {
+        name: 'Compliance Training', icon: 'file-document-outline', expiryDate: '2028-07-01',
+        status: 'expired', value: 'https://www.princexml.com/samples/magic8/index.pdf'
+    },
+    {
+        name: 'Health Training', icon: 'heart-pulse', expiryDate: '2030-07-01',
+        status: 'active', value: 'https://www.princexml.com/samples/magic6/magic.pdf'
+    },
 ]
 
 const Home = () => {
@@ -20,7 +33,7 @@ const Home = () => {
     const renderItems = () => {
         return arr.map((item, index) => {
             return (
-                <View style={styles.rowContainer} key={index}>
+                <TouchableOpacity style={styles.rowContainer} key={index} onPress={() => { navigation.navigate('PreviewRecord', { record: item }) }}>
                     <View style={styles.iconContainer}>
                         <Icon name={item.icon} type="material-community" size={24} color={Colors.light.primary} />
                     </View>
@@ -28,7 +41,7 @@ const Home = () => {
                         <Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 5 }}>{item.name}</Text>
                         <Text style={{ fontSize: 12, color: Colors.light.text }}>{item.expiryDate}</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
             )
         })
     }
@@ -41,7 +54,7 @@ const Home = () => {
                         <Image source={require('../assets/images/logo.png')} style={{ width: 90, height: 30 }} resizeMode={'contain'} />
                     </View> */}
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 20, fontWeight: 'bold', color: Colors.light.text}}>Dashboard</Text>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', color: Colors.light.text }}>Dashboard</Text>
                     </View>
                 </View>
                 <ScrollView contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 25, }}>
@@ -50,8 +63,9 @@ const Home = () => {
                             <Text style={{ fontSize: 16, marginBottom: 5 }}>Total Training</Text>
                             <Text style={{ fontSize: 24, fontWeight: 'bold' }}>12</Text>
                         </Card>
+
                         <Card containerStyle={{ borderRadius: 12, margin: 0, padding: 20 }}>
-                            <Text style={{ fontSize: 16, marginBottom: 5  }}>Expiring/Expired Training</Text>
+                            <Text style={{ fontSize: 16, marginBottom: 5 }}>Expiring/Expired Training</Text>
                             <Text style={{ fontSize: 24, fontWeight: 'bold' }}>3</Text>
 
                         </Card>

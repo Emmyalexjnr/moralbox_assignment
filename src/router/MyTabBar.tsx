@@ -3,11 +3,13 @@ import { PlatformPressable, Text } from '@react-navigation/elements';
 import { useLinkBuilder, useTheme } from '@react-navigation/native';
 import { Icon } from '@rneui/base';
 import { StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/Colors';
 
 function MyTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const { colors } = useTheme();
   const { buildHref } = useLinkBuilder();
+  const insets = useSafeAreaInsets();
 
   const returnLabel = (label: string) => {
     if(label === 'AllRecords'){
@@ -70,7 +72,7 @@ function MyTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
             testID={options.tabBarButtonTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingVertical: 15 }}
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingVertical: 15, paddingBottom: Math.max( insets.bottom, 16) }}
           >
             <Icon name={returnIconName(label.toString())} type="material-community" size={24} color={isFocused ? Colors.light.primary : Colors.light.text} />
             <Text style={{ color: isFocused ? Colors.light.primary : Colors.light.text }}>

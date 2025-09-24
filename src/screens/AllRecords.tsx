@@ -15,11 +15,12 @@ type RecordRowItem = {
 const allRecords: RecordRowItem[] = [
     {
         name: 'Safety Training', icon: 'seatbelt', status: 'active', expiryDate: '2023-01-01',
-        value: 'https://icseindia.org/document/sample.pdf'
+        value: 'https://ontheline.trincoll.edu/images/bookdown/sample-local-pdf.pdf'
     },
     {
         name: 'Security Training', icon: 'shield-lock', status: 'expired', expiryDate: '2025-07-01',
         value: 'https://www.princexml.com/samples/usenix/example.pdf'
+
     },
     {
         name: 'Compliance Training', icon: 'file-document-outline', status: 'upcoming',

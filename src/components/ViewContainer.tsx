@@ -21,7 +21,7 @@ const ViewContainer = (props: ViewContainerProps) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-      <StatusBar translucent={true} backgroundColor="rgba(0,0,0,0)" barStyle={'light-content'} />
+      <StatusBar translucent={true} backgroundColor="rgba(0,0,0,0)" barStyle={'dark-content'} />
       <View style={[styles.containerStyles, { paddingBottom: Math.max(insets.bottom, 16) }, props.style]}>
         {props.children}
       </View>
